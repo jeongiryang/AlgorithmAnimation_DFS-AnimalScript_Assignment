@@ -1,0 +1,8 @@
+7
+AB
+AD
+BC
+CD
+BE
+EF
+FG

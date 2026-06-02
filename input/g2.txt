@@ -1,0 +1,11 @@
+10
+AB
+AC
+AD
+BC
+CD
+BE
+CF
+DG
+EF
+FG
