@@ -182,7 +182,7 @@ def trace_dfs(adjacency: dict[str, list[str]]) -> tuple[list[str], list[tuple[st
             tree_edges.append(new_edge)
             snapshot(
                 "tree_edge",
-                f"{node}에서 {neighbor}로 이동합니다. 간선 {node}{neighbor}를 DFS tree edge로 강조합니다.",
+                f"{node}에서 {neighbor}로 이동합니다. 간선 {node}{neighbor}를 DFS 트리 간선으로 강조합니다.",
                 current=node,
                 candidates=[neighbor],
                 selected_candidate=neighbor,
@@ -285,7 +285,7 @@ def emit_tree_edge(edge: tuple[str, str]) -> list[str]:
     left, right = edge
     edge_name = edge_id(left, right)
     start, end = shortened_line_points(NODE_POSITIONS[left], NODE_POSITIONS[right])
-    lines = [f'# thick DFS tree edge {left}{right}']
+    lines = [f"# 굵은 DFS 트리 간선 {left}{right}"]
     for index, offset in enumerate((-3, 0, 3), start=1):
         shifted_start, shifted_end = offset_points(start, end, offset)
         lines.append(
@@ -303,33 +303,33 @@ def emit_base_layout(title: str, edges: list[tuple[str, str]]) -> list[str]:
         "stepMode true",
         "",
         f'text "title" "{animal_text(title)}" (40, 30) color {color("black")} font SansSerif size 24 bold',
-        f'text "subtitle" "Start node: A | Neighbor order: alphabetical | Undirected graph" (40, 62) color {color("black")} font SansSerif size 14',
+        f'text "subtitle" "시작 노드: A | 인접 노드 방문 순서: 알파벳순 | 무방향 그래프" (40, 62) color {color("black")} font SansSerif size 14',
         "",
         f'rect "graph_panel" (40, 90) (640, 500) color {color("edge_gray")} filled fillColor {color("panel_fill")} depth 8',
-        f'text "graph_label" "Graph Area" (55, 100) color {color("black")} font SansSerif size 14 bold',
+        f'text "graph_label" "그래프 영역" (55, 100) color {color("black")} font SansSerif size 14 bold',
         f'rect "info_panel" (680, 90) (1080, 500) color {color("edge_gray")} filled fillColor {color("panel_fill")} depth 8',
-        f'text "info_label" "DFS Trace" (695, 100) color {color("black")} font SansSerif size 14 bold',
+        f'text "info_label" "DFS 진행 과정" (695, 100) color {color("black")} font SansSerif size 14 bold',
         "",
-        f'text "step_heading" "Current Step" (700, 135) color {color("black")} font SansSerif size 13 bold',
-        f'text "step_text" "Initial graph loaded." (700, 160) color {color("black")} font SansSerif size 13',
-        f'text "order_heading" "Visit Order" (700, 205) color {color("black")} font SansSerif size 13 bold',
+        f'text "step_heading" "현재 단계" (700, 135) color {color("black")} font SansSerif size 13 bold',
+        f'text "step_text" "초기 그래프를 불러왔습니다." (700, 160) color {color("black")} font SansSerif size 13',
+        f'text "order_heading" "방문 순서" (700, 205) color {color("black")} font SansSerif size 13 bold',
         f'text "order_text" "-" (700, 230) color {color("black")} font SansSerif size 13',
-        f'text "stack_heading" "DFS Stack" (700, 275) color {color("black")} font SansSerif size 13 bold',
+        f'text "stack_heading" "DFS 스택" (700, 275) color {color("black")} font SansSerif size 13 bold',
         f'text "stack_text" "-" (700, 300) color {color("black")} font SansSerif size 13',
-        f'text "candidate_heading" "Candidate Nodes" (700, 345) color {color("black")} font SansSerif size 13 bold',
+        f'text "candidate_heading" "방문 후보 노드" (700, 345) color {color("black")} font SansSerif size 13 bold',
         f'text "candidate_text" "-" (700, 370) color {color("black")} font SansSerif size 13',
-        f'text "tree_heading" "DFS Tree Edges" (700, 415) color {color("black")} font SansSerif size 13 bold',
+        f'text "tree_heading" "DFS 트리 간선" (700, 415) color {color("black")} font SansSerif size 13 bold',
         f'text "tree_text" "-" (700, 440) color {color("black")} font SansSerif size 13',
         "",
         f'rect "legend_panel" (40, 525) (1080, 645) color {color("edge_gray")} filled fillColor {color("panel_fill")} depth 8',
-        f'text "legend_title" "Legend" (55, 540) color {color("black")} font SansSerif size 14 bold',
+        f'text "legend_title" "범례" (55, 540) color {color("black")} font SansSerif size 14 bold',
     ]
 
     legend_items = [
-        ("legend_initial", "Initial node", "white", 65, 585),
-        ("legend_visited", "Visited node", "visited_gray", 230, 585),
-        ("legend_current", "Current node", "current_pink", 395, 585),
-        ("legend_candidate", "Candidate node", "candidate_blue", 575, 585),
+        ("legend_initial", "초기 노드", "white", 65, 585),
+        ("legend_visited", "방문 완료 노드", "visited_gray", 230, 585),
+        ("legend_current", "현재 방문 노드", "current_pink", 395, 585),
+        ("legend_candidate", "방문 후보 노드", "candidate_blue", 575, 585),
     ]
     for name, label, fill, x, y in legend_items:
         lines.extend(
@@ -342,13 +342,13 @@ def emit_base_layout(title: str, edges: list[tuple[str, str]]) -> list[str]:
     lines.extend(
         [
             f'polyline "legend_edge" (760, 585) (820, 585) color {color("edge_gray")} depth 3',
-            f'text "legend_edge_text" "Initial edge" (830, 577) color {color("black")} font SansSerif size 12',
+            f'text "legend_edge_text" "초기 간선" (830, 577) color {color("black")} font SansSerif size 12',
             f'polyline "legend_tree_1" (940, 582) (1000, 582) color {color("tree_edge")} depth 1',
             f'polyline "legend_tree_2" (940, 585) (1000, 585) color {color("tree_edge")} depth 1',
             f'polyline "legend_tree_3" (940, 588) (1000, 588) color {color("tree_edge")} depth 1',
-            f'text "legend_tree_text" "DFS tree edge" (1010, 577) color {color("black")} font SansSerif size 12',
+            f'text "legend_tree_text" "DFS 트리 간선" (1010, 577) color {color("black")} font SansSerif size 12',
             "",
-            "# base graph edges",
+            "# 기본 그래프 간선",
         ]
     )
 
@@ -359,7 +359,7 @@ def emit_base_layout(title: str, edges: list[tuple[str, str]]) -> list[str]:
             f'color {color("edge_gray")} depth 5'
         )
 
-    lines.extend(["", "# graph nodes"])
+    lines.extend(["", "# 그래프 노드"])
     for node in NODES:
         x, y = NODE_POSITIONS[node]
         for state_name, fill in NODE_STATE_FILLS.items():
@@ -374,7 +374,7 @@ def emit_base_layout(title: str, edges: list[tuple[str, str]]) -> list[str]:
             f'color {color("black")} font SansSerif size 16 bold depth 1'
         )
 
-    lines.extend(["", 'nextStep "Initial graph"'])
+    lines.extend(["", 'nextStep "초기 그래프"'])
     return lines
 
 
@@ -427,7 +427,7 @@ def write_animalscript(
     edges: list[tuple[str, str]],
     events: list[dict],
 ) -> None:
-    title = f"DFS Animation - {input_path.stem}"
+    title = f"DFS 애니메이션 - {input_path.stem}"
     script = generate_animalscript(title, edges, events)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(script, encoding="utf-8")

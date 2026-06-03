@@ -1,45 +1,45 @@
 %Animal 2
-title "DFS Animation - g2"
+title "DFS 애니메이션 - g2"
 author "DFS AnimalScript Generator"
 stepMode true
 
-text "title" "DFS Animation - g2" (40, 30) color black font SansSerif size 24 bold
-text "subtitle" "Start node: A | Neighbor order: alphabetical | Undirected graph" (40, 62) color black font SansSerif size 14
+text "title" "DFS 애니메이션 - g2" (40, 30) color black font SansSerif size 24 bold
+text "subtitle" "시작 노드: A | 인접 노드 방문 순서: 알파벳순 | 무방향 그래프" (40, 62) color black font SansSerif size 14
 
 rect "graph_panel" (40, 90) (640, 500) color gray filled fillColor white depth 8
-text "graph_label" "Graph Area" (55, 100) color black font SansSerif size 14 bold
+text "graph_label" "그래프 영역" (55, 100) color black font SansSerif size 14 bold
 rect "info_panel" (680, 90) (1080, 500) color gray filled fillColor white depth 8
-text "info_label" "DFS Trace" (695, 100) color black font SansSerif size 14 bold
+text "info_label" "DFS 진행 과정" (695, 100) color black font SansSerif size 14 bold
 
-text "step_heading" "Current Step" (700, 135) color black font SansSerif size 13 bold
-text "step_text" "Initial graph loaded." (700, 160) color black font SansSerif size 13
-text "order_heading" "Visit Order" (700, 205) color black font SansSerif size 13 bold
+text "step_heading" "현재 단계" (700, 135) color black font SansSerif size 13 bold
+text "step_text" "초기 그래프를 불러왔습니다." (700, 160) color black font SansSerif size 13
+text "order_heading" "방문 순서" (700, 205) color black font SansSerif size 13 bold
 text "order_text" "-" (700, 230) color black font SansSerif size 13
-text "stack_heading" "DFS Stack" (700, 275) color black font SansSerif size 13 bold
+text "stack_heading" "DFS 스택" (700, 275) color black font SansSerif size 13 bold
 text "stack_text" "-" (700, 300) color black font SansSerif size 13
-text "candidate_heading" "Candidate Nodes" (700, 345) color black font SansSerif size 13 bold
+text "candidate_heading" "방문 후보 노드" (700, 345) color black font SansSerif size 13 bold
 text "candidate_text" "-" (700, 370) color black font SansSerif size 13
-text "tree_heading" "DFS Tree Edges" (700, 415) color black font SansSerif size 13 bold
+text "tree_heading" "DFS 트리 간선" (700, 415) color black font SansSerif size 13 bold
 text "tree_text" "-" (700, 440) color black font SansSerif size 13
 
 rect "legend_panel" (40, 525) (1080, 645) color gray filled fillColor white depth 8
-text "legend_title" "Legend" (55, 540) color black font SansSerif size 14 bold
+text "legend_title" "범례" (55, 540) color black font SansSerif size 14 bold
 circle "legend_initial" (65, 585) radius 12 color black filled fillColor white depth 2
-text "legend_initial_text" "Initial node" (85, 577) color black font SansSerif size 12
+text "legend_initial_text" "초기 노드" (85, 577) color black font SansSerif size 12
 circle "legend_visited" (230, 585) radius 12 color black filled fillColor gray depth 2
-text "legend_visited_text" "Visited node" (250, 577) color black font SansSerif size 12
+text "legend_visited_text" "방문 완료 노드" (250, 577) color black font SansSerif size 12
 circle "legend_current" (395, 585) radius 12 color black filled fillColor pink depth 2
-text "legend_current_text" "Current node" (415, 577) color black font SansSerif size 12
+text "legend_current_text" "현재 방문 노드" (415, 577) color black font SansSerif size 12
 circle "legend_candidate" (575, 585) radius 12 color black filled fillColor blue depth 2
-text "legend_candidate_text" "Candidate node" (595, 577) color black font SansSerif size 12
+text "legend_candidate_text" "방문 후보 노드" (595, 577) color black font SansSerif size 12
 polyline "legend_edge" (760, 585) (820, 585) color gray depth 3
-text "legend_edge_text" "Initial edge" (830, 577) color black font SansSerif size 12
+text "legend_edge_text" "초기 간선" (830, 577) color black font SansSerif size 12
 polyline "legend_tree_1" (940, 582) (1000, 582) color black depth 1
 polyline "legend_tree_2" (940, 585) (1000, 585) color black depth 1
 polyline "legend_tree_3" (940, 588) (1000, 588) color black depth 1
-text "legend_tree_text" "DFS tree edge" (1010, 577) color black font SansSerif size 12
+text "legend_tree_text" "DFS 트리 간선" (1010, 577) color black font SansSerif size 12
 
-# base graph edges
+# 기본 그래프 간선
 polyline "edge_AB" (339, 147) (201, 253) color gray depth 5
 polyline "edge_AC" (360, 157) (360, 243) color gray depth 5
 polyline "edge_AD" (381, 147) (519, 253) color gray depth 5
@@ -51,7 +51,7 @@ polyline "edge_DG" (540, 297) (540, 403) color gray depth 5
 polyline "edge_EF" (207, 430) (333, 430) color gray depth 5
 polyline "edge_FG" (387, 430) (513, 430) color gray depth 5
 
-# graph nodes
+# 그래프 노드
 circle "node_A_initial" (360, 130) radius 24 color black filled fillColor white depth 2
 circle "node_A_visited" (360, 130) radius 24 color black filled fillColor gray depth 2
 hide "node_A_visited"
@@ -109,7 +109,7 @@ circle "node_G_candidate" (540, 430) radius 24 color black filled fillColor blue
 hide "node_G_candidate"
 text "label_G" "G" (535, 421) color black font SansSerif size 16 bold depth 1
 
-nextStep "Initial graph"
+nextStep "초기 그래프"
 
 # Step 1: visit
 hide "node_A_initial"
@@ -198,7 +198,7 @@ setText "tree_text" "-"
 nextStep "A의 인접 노드 중 방문하지 않은 B를 후보로 선택합니다."
 
 # Step 3: tree_edge
-# thick DFS tree edge AB
+# 굵은 DFS 트리 간선 AB
 polyline "tree_AB_1" (341, 149) (203, 256) color black depth 1
 polyline "tree_AB_2" (339, 147) (201, 253) color black depth 1
 polyline "tree_AB_3" (337, 144) (199, 251) color black depth 1
@@ -237,12 +237,12 @@ hide "node_G_visited"
 hide "node_G_current"
 hide "node_G_candidate"
 show "node_G_initial"
-setText "step_text" "A에서 B로 이동합니다. 간선 AB를 DFS tree edge로 강조합니다."
+setText "step_text" "A에서 B로 이동합니다. 간선 AB를 DFS 트리 간선으로 강조합니다."
 setText "order_text" "A"
 setText "stack_text" "A"
 setText "candidate_text" "B"
 setText "tree_text" "AB"
-nextStep "A에서 B로 이동합니다. 간선 AB를 DFS tree edge로 강조합니다."
+nextStep "A에서 B로 이동합니다. 간선 AB를 DFS 트리 간선으로 강조합니다."
 
 # Step 4: visit
 hide "node_A_initial"
@@ -331,7 +331,7 @@ setText "tree_text" "AB"
 nextStep "B의 인접 노드 중 방문하지 않은 C를 후보로 선택합니다."
 
 # Step 6: tree_edge
-# thick DFS tree edge BC
+# 굵은 DFS 트리 간선 BC
 polyline "tree_BC_1" (207, 267) (333, 267) color black depth 1
 polyline "tree_BC_2" (207, 270) (333, 270) color black depth 1
 polyline "tree_BC_3" (207, 273) (333, 273) color black depth 1
@@ -370,12 +370,12 @@ hide "node_G_visited"
 hide "node_G_current"
 hide "node_G_candidate"
 show "node_G_initial"
-setText "step_text" "B에서 C로 이동합니다. 간선 BC를 DFS tree edge로 강조합니다."
+setText "step_text" "B에서 C로 이동합니다. 간선 BC를 DFS 트리 간선으로 강조합니다."
 setText "order_text" "A -> B"
 setText "stack_text" "A -> B"
 setText "candidate_text" "C"
 setText "tree_text" "AB, BC"
-nextStep "B에서 C로 이동합니다. 간선 BC를 DFS tree edge로 강조합니다."
+nextStep "B에서 C로 이동합니다. 간선 BC를 DFS 트리 간선으로 강조합니다."
 
 # Step 7: visit
 hide "node_A_initial"
@@ -464,7 +464,7 @@ setText "tree_text" "AB, BC"
 nextStep "C의 인접 노드 중 방문하지 않은 D를 후보로 선택합니다."
 
 # Step 9: tree_edge
-# thick DFS tree edge CD
+# 굵은 DFS 트리 간선 CD
 polyline "tree_CD_1" (387, 267) (513, 267) color black depth 1
 polyline "tree_CD_2" (387, 270) (513, 270) color black depth 1
 polyline "tree_CD_3" (387, 273) (513, 273) color black depth 1
@@ -503,12 +503,12 @@ hide "node_G_visited"
 hide "node_G_current"
 hide "node_G_candidate"
 show "node_G_initial"
-setText "step_text" "C에서 D로 이동합니다. 간선 CD를 DFS tree edge로 강조합니다."
+setText "step_text" "C에서 D로 이동합니다. 간선 CD를 DFS 트리 간선으로 강조합니다."
 setText "order_text" "A -> B -> C"
 setText "stack_text" "A -> B -> C"
 setText "candidate_text" "D"
 setText "tree_text" "AB, BC, CD"
-nextStep "C에서 D로 이동합니다. 간선 CD를 DFS tree edge로 강조합니다."
+nextStep "C에서 D로 이동합니다. 간선 CD를 DFS 트리 간선으로 강조합니다."
 
 # Step 10: visit
 hide "node_A_initial"
@@ -597,7 +597,7 @@ setText "tree_text" "AB, BC, CD"
 nextStep "D의 인접 노드 중 방문하지 않은 G를 후보로 선택합니다."
 
 # Step 12: tree_edge
-# thick DFS tree edge DG
+# 굵은 DFS 트리 간선 DG
 polyline "tree_DG_1" (543, 297) (543, 403) color black depth 1
 polyline "tree_DG_2" (540, 297) (540, 403) color black depth 1
 polyline "tree_DG_3" (537, 297) (537, 403) color black depth 1
@@ -636,12 +636,12 @@ hide "node_G_visited"
 hide "node_G_current"
 hide "node_G_candidate"
 show "node_G_candidate"
-setText "step_text" "D에서 G로 이동합니다. 간선 DG를 DFS tree edge로 강조합니다."
+setText "step_text" "D에서 G로 이동합니다. 간선 DG를 DFS 트리 간선으로 강조합니다."
 setText "order_text" "A -> B -> C -> D"
 setText "stack_text" "A -> B -> C -> D"
 setText "candidate_text" "G"
 setText "tree_text" "AB, BC, CD, DG"
-nextStep "D에서 G로 이동합니다. 간선 DG를 DFS tree edge로 강조합니다."
+nextStep "D에서 G로 이동합니다. 간선 DG를 DFS 트리 간선으로 강조합니다."
 
 # Step 13: visit
 hide "node_A_initial"
@@ -730,7 +730,7 @@ setText "tree_text" "AB, BC, CD, DG"
 nextStep "G의 인접 노드 중 방문하지 않은 F를 후보로 선택합니다."
 
 # Step 15: tree_edge
-# thick DFS tree edge GF
+# 굵은 DFS 트리 간선 GF
 polyline "tree_FG_1" (513, 433) (387, 433) color black depth 1
 polyline "tree_FG_2" (513, 430) (387, 430) color black depth 1
 polyline "tree_FG_3" (513, 427) (387, 427) color black depth 1
@@ -769,12 +769,12 @@ hide "node_G_visited"
 hide "node_G_current"
 hide "node_G_candidate"
 show "node_G_current"
-setText "step_text" "G에서 F로 이동합니다. 간선 GF를 DFS tree edge로 강조합니다."
+setText "step_text" "G에서 F로 이동합니다. 간선 GF를 DFS 트리 간선으로 강조합니다."
 setText "order_text" "A -> B -> C -> D -> G"
 setText "stack_text" "A -> B -> C -> D -> G"
 setText "candidate_text" "F"
 setText "tree_text" "AB, BC, CD, DG, GF"
-nextStep "G에서 F로 이동합니다. 간선 GF를 DFS tree edge로 강조합니다."
+nextStep "G에서 F로 이동합니다. 간선 GF를 DFS 트리 간선으로 강조합니다."
 
 # Step 16: visit
 hide "node_A_initial"
@@ -863,7 +863,7 @@ setText "tree_text" "AB, BC, CD, DG, GF"
 nextStep "F의 인접 노드 중 방문하지 않은 E를 후보로 선택합니다."
 
 # Step 18: tree_edge
-# thick DFS tree edge FE
+# 굵은 DFS 트리 간선 FE
 polyline "tree_EF_1" (333, 433) (207, 433) color black depth 1
 polyline "tree_EF_2" (333, 430) (207, 430) color black depth 1
 polyline "tree_EF_3" (333, 427) (207, 427) color black depth 1
@@ -902,12 +902,12 @@ hide "node_G_visited"
 hide "node_G_current"
 hide "node_G_candidate"
 show "node_G_visited"
-setText "step_text" "F에서 E로 이동합니다. 간선 FE를 DFS tree edge로 강조합니다."
+setText "step_text" "F에서 E로 이동합니다. 간선 FE를 DFS 트리 간선으로 강조합니다."
 setText "order_text" "A -> B -> C -> D -> G -> F"
 setText "stack_text" "A -> B -> C -> D -> G -> F"
 setText "candidate_text" "E"
 setText "tree_text" "AB, BC, CD, DG, GF, FE"
-nextStep "F에서 E로 이동합니다. 간선 FE를 DFS tree edge로 강조합니다."
+nextStep "F에서 E로 이동합니다. 간선 FE를 DFS 트리 간선으로 강조합니다."
 
 # Step 19: visit
 hide "node_A_initial"
