@@ -23,15 +23,22 @@ NODE_POSITIONS = {
 }
 
 COLORS = {
-    "white": (255, 255, 255),
-    "black": (0, 0, 0),
-    "edge_gray": (165, 165, 165),
-    "visited_gray": (190, 190, 190),
-    "current_pink": (255, 174, 201),
-    "candidate_blue": (128, 184, 255),
-    "tree_edge": (35, 35, 35),
-    "panel_fill": (245, 247, 250),
-    "green": (109, 172, 97),
+    "white": "white",
+    "black": "black",
+    "edge_gray": "gray",
+    "visited_gray": "gray",
+    "current_pink": "pink",
+    "candidate_blue": "blue",
+    "tree_edge": "black",
+    "panel_fill": "white",
+    "green": "green",
+}
+
+NODE_STATE_FILLS = {
+    "initial": "white",
+    "visited": "visited_gray",
+    "current": "current_pink",
+    "candidate": "candidate_blue",
 }
 
 
@@ -40,9 +47,8 @@ class InputError(ValueError):
 
 
 def color(name: str) -> str:
-    """Return an AnimalScript RGB color literal."""
-    red, green, blue = COLORS[name]
-    return f"({red}, {green}, {blue})"
+    """Return an AnimalScript named color literal."""
+    return COLORS[name]
 
 
 def animal_text(value: str) -> str:
@@ -260,14 +266,17 @@ def emit_node_state(event: dict) -> list[str]:
 
     for node in NODES:
         if node == current:
-            fill = "current_pink"
+            state = "current"
         elif node == selected_candidate or (node in candidates and node not in visited):
-            fill = "candidate_blue"
+            state = "candidate"
         elif node in visited:
-            fill = "visited_gray"
+            state = "visited"
         else:
-            fill = "white"
-        lines.append(f'setColor "node_{node}" fillColor {color(fill)}')
+            state = "initial"
+
+        for state_name in NODE_STATE_FILLS:
+            lines.append(f'hide "node_{node}_{state_name}"')
+        lines.append(f'show "node_{node}_{state}"')
 
     return lines
 
@@ -296,9 +305,9 @@ def emit_base_layout(title: str, edges: list[tuple[str, str]]) -> list[str]:
         f'text "title" "{animal_text(title)}" (40, 30) color {color("black")} font SansSerif size 24 bold',
         f'text "subtitle" "Start node: A | Neighbor order: alphabetical | Undirected graph" (40, 62) color {color("black")} font SansSerif size 14',
         "",
-        f'rect "graph_panel" (40, 90) (640, 500) color {color("edge_gray")} fillColor {color("panel_fill")} filled depth 8',
+        f'rect "graph_panel" (40, 90) (640, 500) color {color("edge_gray")} filled fillColor {color("panel_fill")} depth 8',
         f'text "graph_label" "Graph Area" (55, 100) color {color("black")} font SansSerif size 14 bold',
-        f'rect "info_panel" (680, 90) (1080, 500) color {color("edge_gray")} fillColor {color("panel_fill")} filled depth 8',
+        f'rect "info_panel" (680, 90) (1080, 500) color {color("edge_gray")} filled fillColor {color("panel_fill")} depth 8',
         f'text "info_label" "DFS Trace" (695, 100) color {color("black")} font SansSerif size 14 bold',
         "",
         f'text "step_heading" "Current Step" (700, 135) color {color("black")} font SansSerif size 13 bold',
@@ -312,7 +321,7 @@ def emit_base_layout(title: str, edges: list[tuple[str, str]]) -> list[str]:
         f'text "tree_heading" "DFS Tree Edges" (700, 415) color {color("black")} font SansSerif size 13 bold',
         f'text "tree_text" "-" (700, 440) color {color("black")} font SansSerif size 13',
         "",
-        f'rect "legend_panel" (40, 525) (1080, 645) color {color("edge_gray")} fillColor {color("panel_fill")} filled depth 8',
+        f'rect "legend_panel" (40, 525) (1080, 645) color {color("edge_gray")} filled fillColor {color("panel_fill")} depth 8',
         f'text "legend_title" "Legend" (55, 540) color {color("black")} font SansSerif size 14 bold',
     ]
 
@@ -325,7 +334,7 @@ def emit_base_layout(title: str, edges: list[tuple[str, str]]) -> list[str]:
     for name, label, fill, x, y in legend_items:
         lines.extend(
             [
-                f'circle "{name}" ({x}, {y}) radius 12 color {color("black")} fillColor {color(fill)} filled depth 2',
+                f'circle "{name}" ({x}, {y}) radius 12 color {color("black")} filled fillColor {color(fill)} depth 2',
                 f'text "{name}_text" "{label}" ({x + 20}, {y - 8}) color {color("black")} font SansSerif size 12',
             ]
         )
@@ -353,11 +362,16 @@ def emit_base_layout(title: str, edges: list[tuple[str, str]]) -> list[str]:
     lines.extend(["", "# graph nodes"])
     for node in NODES:
         x, y = NODE_POSITIONS[node]
-        lines.extend(
-            [
-                f'circle "node_{node}" ({x}, {y}) radius {NODE_RADIUS} color {color("black")} fillColor {color("white")} filled depth 2',
-                f'text "label_{node}" "{node}" ({x - 5}, {y - 9}) color {color("black")} font SansSerif size 16 bold depth 1',
-            ]
+        for state_name, fill in NODE_STATE_FILLS.items():
+            lines.append(
+                f'circle "node_{node}_{state_name}" ({x}, {y}) radius {NODE_RADIUS} '
+                f'color {color("black")} filled fillColor {color(fill)} depth 2'
+            )
+            if state_name != "initial":
+                lines.append(f'hide "node_{node}_{state_name}"')
+        lines.append(
+            f'text "label_{node}" "{node}" ({x - 5}, {y - 9}) '
+            f'color {color("black")} font SansSerif size 16 bold depth 1'
         )
 
     lines.extend(["", 'nextStep "Initial graph"'])
