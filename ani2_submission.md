@@ -8,8 +8,8 @@
 - [4. DFS 수행 결과](#4-dfs-수행-결과)
 - [5. Animal 실행 결과](#5-animal-실행-결과)
 - [6. script 생성 프로그램](#6-script-생성-프로그램)
-- [7. g1 AnimalScript](#7-g1-animalscript)
-- [8. g2 AnimalScript](#8-g2-animalscript)
+- [부록 A. g1 AnimalScript](#부록-a-g1-animalscript)
+- [부록 B. g2 AnimalScript](#부록-b-g2-animalscript)
 
 ## 1. 과제 개요
 
@@ -642,7 +642,9 @@ if __name__ == "__main__":
     raise SystemExit(main(sys.argv))
 ```
 
-## 7. g1 AnimalScript
+## 부록 A. g1 AnimalScript
+
+파일 경로: `output/g1.asu`
 
 ```text
 %Animal 2
@@ -2140,7 +2142,9 @@ setText "tree_text" "AB, BC, CD, BE, EF, FG"
 nextStep "DFS가 완료되었습니다."
 ```
 
-## 8. g2 AnimalScript
+## 부록 B. g2 AnimalScript
+
+파일 경로: `output/g2.asu`
 
 ```text
 %Animal 2
