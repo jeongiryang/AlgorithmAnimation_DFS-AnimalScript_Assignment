@@ -1,34 +1,38 @@
 # DFS AnimalScript Generator Assignment
 
-고정된 7개 노드 `A, B, C, D, E, F, G`로 구성된 무방향 그래프를 입력 파일에서 읽고, `A`부터 깊이 우선 탐색(DFS)을 수행한 뒤 DFS 방문 과정을 AnimalScript(`.asu`)로 자동 생성하는 과제용 레포입니다.
+## 1. 과제 개요
 
-이 레포는 직접 손으로 작성한 AnimalScript만 제출하는 구조가 아니라, 입력 파일을 읽어 AnimalScript를 생성하는 Python 프로그램을 포함합니다. 규모가 작은 과제이므로 이 레포에서는 README가 구현 설명 및 정리 문서 역할을 합니다.
+본 과제는 주어진 무방향 그래프를 깊이우선탐색(DFS)으로 탐색하는 과정을 AnimalScript 애니메이션으로 표현하는 과제이다. 그래프의 노드는 `A, B, C, D, E, F, G` 총 7개로 고정하며, 간선은 입력 파일에서 읽어 구성한다.
 
-## 과제 요구사항
+DFS는 시작 노드 `A`에서 출발한다. 인접 노드는 알파벳순으로 방문하며, 각 단계에서 노드 상태와 DFS 트리 간선을 시각적으로 표시한다. 초기 노드는 흰색, 방문 완료 노드는 회색, 현재 방문 노드는 분홍색, 방문 후보 노드는 푸른색으로 표현한다. DFS 방문에 사용된 간선은 굵은 검은색 선으로 강조한다.
 
-주어진 그래프를 깊이우선탐색(DFS)하는 과정을 화면에 그리는 과제입니다.
+이 레포는 손으로 작성한 AnimalScript만 제출하는 구조가 아니다. Python 기반 script 생성 프로그램인 `src/dfs_animal_generator.py`가 입력 파일을 읽고 DFS를 수행한 뒤 `output/g1.asu`, `output/g2.asu`를 자동 생성하는 구조이다.
 
-- 노드는 `A, B, C, D, E, F, G` 총 7개입니다.
-- 간선은 입력 파일로 제공됩니다.
-- 입력 파일 첫 줄은 간선 개수입니다.
-- 두 번째 줄부터는 두 노드 이름이 한 줄에 표시됩니다.
-- DFS 시작 노드는 `A`입니다.
-- 인접 노드는 알파벳순으로 방문합니다.
-- 그래프는 무방향 그래프로 처리합니다.
+## 2. 과제 요구사항
 
-1단계는 그래프를 화면에 표시합니다.
+과제 요구사항은 다음과 같다.
 
-- 노드는 흰색으로 표시합니다.
-- 간선은 가는 선으로 표시합니다.
+- 노드는 `A, B, C, D, E, F, G` 총 7개이다.
+- 간선은 입력 파일로 제공한다.
+- 입력 파일 첫 줄은 간선 개수이다.
+- 두 번째 줄부터는 두 노드 이름이 한 줄에 표시된다.
+- DFS 시작 노드는 `A`이다.
+- 인접 노드는 알파벳순으로 방문한다.
+- 그래프는 무방향 그래프로 처리한다.
 
-2단계는 `A`부터 방문하는 DFS 순서에 따라 애니메이션합니다.
+1단계는 그래프 표시 단계이다.
 
-- 이미 방문한 노드는 회색으로 표시합니다.
-- 방금 방문한 노드는 분홍색으로 표시합니다.
-- 방문 후보 노드는 푸른색으로 표시합니다.
-- 방문에 사용된 간선은 굵은 선으로 표시합니다.
+- 노드는 흰색으로 표시한다.
+- 간선은 가는 선으로 표시한다.
 
-제출물:
+2단계는 `A`부터 방문하는 DFS 애니메이션 단계이다.
+
+- 이미 방문한 노드는 회색으로 표시한다.
+- 방금 방문한 노드는 분홍색으로 표시한다.
+- 방문 후보 노드는 푸른색으로 표시한다.
+- 방문에 사용된 간선은 굵은 선으로 표시한다.
+
+제출물은 다음과 같다.
 
 - script 생성 프로그램
 - animal script
@@ -37,15 +41,15 @@
 - hwp 또는 word 형식 파일 하나
 - zip 사용 금지
 
-채점 기준:
+채점 기준은 다음과 같다.
 
 - 애니메이션 작동 여부 50%
 - 보기 좋게 그렸는가 20%
 - 스크립트 생성 프로그램 사용 여부 30%
 
-## 과제 안내 이미지
+## 3. 과제 안내 이미지
 
-아래 이미지는 과제 안내 자료입니다. Animal 실행 결과 캡처가 아니라 과제 요구사항을 정리하기 위한 참고 이미지입니다.
+아래 이미지는 과제 안내 자료이다. Animal 실행 결과 캡처가 아니라 과제 요구사항을 정리하기 위한 참고 이미지이다.
 
 <table>
   <tr>
@@ -86,15 +90,17 @@
   </tr>
 </table>
 
-## 레포 목적
+## 4. 구현 개요
 
-- `input/g1.txt`, `input/g2.txt` 그래프 입력 파일을 유지합니다.
-- `src/dfs_animal_generator.py`가 입력 그래프를 검증하고 DFS를 수행합니다.
-- 생성 프로그램이 `output/g1.asu`, `output/g2.asu` AnimalScript 파일을 만듭니다.
-- README를 중심으로 과제 요구사항, 구현 설명, 실행 방법을 정리합니다.
-- 실제 LMS 제출 시에는 과제 요구사항에 따라 생성 프로그램, AnimalScript, Animal 실행 캡처를 Word/HWP 하나에 정리해야 합니다.
+구현은 Python 표준 라이브러리만 사용한다. 외부 라이브러리나 웹 시각화 도구를 사용하지 않는다. 입력 파일을 검증한 뒤 무방향 그래프의 인접 리스트를 구성하고, 시작 노드 `A`부터 DFS를 수행한다.
 
-## 레포 구조
+인접 노드는 알파벳순으로 정렬한다. DFS 수행 과정에서 방문 순서와 DFS tree edge를 계산한다. 이후 계산된 이벤트 목록을 바탕으로 AnimalScript `.asu` 파일을 자동 생성한다.
+
+생성된 AnimalScript는 단계별 `nextStep` 구조를 사용한다. 각 단계는 현재 단계 설명, 방문 순서, DFS 스택, 방문 후보 노드, DFS 트리 간선 정보를 갱신한다. 노드 상태는 흰색, 회색, 분홍색, 푸른색으로 구분하고, DFS 트리 간선은 굵은 검은색 선으로 표현한다. 화면 UI 라벨은 한글로 구성한다.
+
+## 5. 레포 구조
+
+현재 레포 구조는 다음과 같다.
 
 ```text
 README.md
@@ -116,13 +122,19 @@ screenshots/
   assignment_05_dfs_step.png
   assignment_06_submission_details.png
   assignment_07_grading_criteria.png
+  result_g1_01_initial.png
+  result_g1_02_start_candidate.png
+  result_g1_03_middle_step.png
+  result_g1_04_final.png
+  result_g2_01_initial.png
+  result_g2_02_start_candidate.png
+  result_g2_03_middle_step.png
+  result_g2_04_final.png
 ```
 
-## 입력 파일 형식
+## 6. 입력 파일
 
-입력 파일 첫 줄에는 간선 개수를 적습니다.
-
-두 번째 줄부터는 무방향 간선을 한 줄에 하나씩 적습니다. 간선은 `AB`, `AC`처럼 노드 문자 2개로 작성합니다.
+`input/g1.txt`의 내용은 다음과 같다.
 
 ```text
 7
@@ -135,51 +147,188 @@ EF
 FG
 ```
 
-조건:
+`g1.txt`는 간선 7개를 가진 무방향 그래프를 의미한다. 첫 줄 `7`은 이후에 입력되는 간선 줄 수와 일치한다.
 
-- 허용 노드는 `A`부터 `G`까지입니다.
-- 자기 자신으로 가는 간선은 허용하지 않습니다.
-- 중복 간선은 안전하게 무시합니다.
-- 인접 노드는 알파벳순으로 방문합니다.
-- DFS 시작 노드는 항상 `A`입니다.
+`input/g2.txt`의 내용은 다음과 같다.
 
-## 실행 방법
+```text
+10
+AB
+AC
+AD
+BC
+CD
+BE
+CF
+DG
+EF
+FG
+```
+
+`g2.txt`는 간선 10개를 가진 무방향 그래프를 의미한다. 첫 줄 `10`은 이후에 입력되는 간선 줄 수와 일치한다.
+
+두 입력 파일 모두 노드 `A`부터 `G`까지만 사용한다. 각 간선은 `AB`, `AC`와 같이 두 노드 문자로 표현한다.
+
+## 7. DFS 수행 결과
+
+DFS 수행 결과는 다음과 같다.
+
+| 입력 파일 | DFS 방문 순서 | DFS tree edges |
+| --- | --- | --- |
+| `g1.txt` | `A -> B -> C -> D -> E -> F -> G` | `AB, BC, CD, BE, EF, FG` |
+| `g2.txt` | `A -> B -> C -> D -> G -> F -> E` | `AB, BC, CD, DG, GF, FE` |
+
+그래프는 무방향 그래프이다. 따라서 `g2`의 `GF`, `FE`는 각각 입력 간선 `FG`, `EF`를 DFS 진행 방향 기준으로 표시한 것이다.
+
+## 8. 실행 방법
+
+AnimalScript 생성 명령은 다음과 같다.
 
 ```bash
 python src/dfs_animal_generator.py input/g1.txt output/g1.asu
 python src/dfs_animal_generator.py input/g2.txt output/g2.asu
 ```
 
-## g1/g2 예상 DFS 방문 순서
+Animal 실행 방법은 다음과 같다.
 
-- `g1`: `A -> B -> C -> D -> E -> F -> G`
-- `g2`: `A -> B -> C -> D -> G -> F -> E`
+1. Animal을 실행한다.
+2. `File` 메뉴에서 생성된 `.asu` 파일을 연다.
+3. `output/g1.asu`, `output/g2.asu`를 각각 실행한다.
+4. 단계별 DFS 애니메이션 결과를 확인한다.
 
-## AnimalScript 생성 방법
+## 9. AnimalScript 생성 프로그램 설명
 
-생성기는 입력 파일을 읽고 다음 작업을 수행합니다.
+`src/dfs_animal_generator.py`는 본 과제의 script 생성 프로그램이다. 입력 그래프 파일을 읽고 DFS를 수행한 뒤 AnimalScript 파일을 생성한다. LMS 제출용 Word/HWP 문서로 변환할 때는 이 파일을 script 생성 프로그램으로 첨부하거나, 부록에 전체 코드를 포함한다.
 
-1. 첫 줄의 간선 개수와 실제 간선 줄 수를 검증합니다.
-2. 간선 형식, 허용 노드, 자기 간선을 검증합니다.
-3. 무방향 인접 리스트를 만듭니다.
-4. 인접 노드를 알파벳순으로 정렬해 `A`부터 DFS를 수행합니다.
-5. DFS 방문 순서와 DFS tree edge를 콘솔에 출력합니다.
-6. 각 DFS 단계가 `nextStep`으로 나뉜 AnimalScript 파일을 생성합니다.
+### 입력 검증
 
-생성된 애니메이션은 제목, 그래프 영역, 현재 단계 설명, 방문 순서, DFS stack, 후보 노드, 색상 범례, DFS tree edge 강조를 포함합니다.
+생성 프로그램은 입력 파일 존재 여부를 확인하고, 첫 줄의 간선 개수가 실제 간선 줄 수와 일치하는지 검사한다. 간선 형식은 두 문자로 제한한다. 노드는 `A`부터 `G`까지만 허용한다. 자기 자신으로 가는 간선은 거부한다. 중복 간선은 안전하게 무시한다.
 
-## Animal에서 .asu 실행 후 캡처하는 방법
+### 그래프 구성
 
-1. Animal을 실행합니다.
-2. `File` 메뉴에서 생성된 `.asu` 파일을 엽니다.
-3. `output/g1.asu`, `output/g2.asu`를 각각 실행해 DFS 애니메이션이 단계별로 보이는지 확인합니다.
-4. 필요한 실행 화면을 캡처합니다.
-5. 캡처 이미지는 과제 안내 이미지와 구분되는 파일명으로 `screenshots/` 폴더에 추가할 수 있습니다.
+입력 간선은 무방향 간선으로 처리한다. 각 간선 `AB`는 `A`의 인접 노드에 `B`를 추가하고, `B`의 인접 노드에 `A`를 추가하는 방식으로 반영한다. 모든 인접 리스트는 알파벳순으로 정렬한다.
 
-## 최종 제출물 정리 방법
+### DFS 탐색
 
-이 레포에서는 README가 구현 설명 및 정리 문서 역할을 합니다.
+DFS는 시작 노드 `A`에서 시작한다. 인접 노드는 정렬된 순서대로 검사한다. 아직 방문하지 않은 인접 노드를 발견하면 후보 노드로 표시하고, 해당 간선을 DFS tree edge로 기록한 뒤 재귀적으로 방문한다.
 
-실제 LMS 제출 시에는 과제 요구사항에 따라 script 생성 프로그램, AnimalScript, `g1.txt`와 `g2.txt` 각각의 Animal 실행 캡처를 Word/HWP 하나에 정리해야 합니다.
+### 애니메이션 상태 구성
 
-zip 파일은 사용하지 않습니다.
+DFS 진행 중 각 이벤트를 단계 정보로 저장한다. 저장되는 정보는 현재 단계 설명, 방문 순서, DFS 스택, 방문 후보 노드, DFS 트리 간선 목록이다. 노드 상태는 초기, 방문 완료, 현재 방문, 방문 후보로 구분한다.
+
+### AnimalScript 출력
+
+프로그램은 계산된 이벤트 목록을 이용해 `.asu` 파일을 생성한다. 각 이벤트는 `nextStep`으로 분리한다. 화면에는 제목, 그래프 영역, DFS 진행 과정 패널, 방문 순서, DFS 스택, 방문 후보 노드, DFS 트리 간선, 범례를 배치한다.
+
+## 10. AnimalScript 생성 결과
+
+생성 결과 파일은 다음과 같다.
+
+- `output/g1.asu`
+- `output/g2.asu`
+
+두 파일은 모두 `src/dfs_animal_generator.py` 실행으로 생성한다. 파일은 `%Animal 2` 형식과 `stepMode true` 설정을 사용한다. 각 DFS 단계는 `nextStep`으로 분리되어 Animal에서 단계별 애니메이션으로 확인할 수 있다.
+
+화면 구성 요소는 다음과 같다.
+
+- 제목
+- 그래프 영역
+- DFS 진행 과정
+- 방문 순서
+- DFS 스택
+- 방문 후보 노드
+- DFS 트리 간선
+- 범례
+
+AnimalScript 전체 내용을 README에 모두 포함하면 문서가 지나치게 길어진다. 따라서 README에서는 생성 파일 위치와 생성 방식 중심으로 설명한다. LMS 제출용 Word/HWP 문서에는 `output/g1.asu`, `output/g2.asu`의 AnimalScript 내용을 첨부한다.
+
+## 11. Animal 실행 결과
+
+다음 이미지는 Animal에서 생성된 `.asu` 파일을 실행한 결과이다.
+
+### g1 실행 결과
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/result_g1_01_initial.png" width="440"><br>
+      <sub>g1 초기 그래프</sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/result_g1_02_start_candidate.png" width="440"><br>
+      <sub>g1 시작 노드와 후보 노드 표시</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/result_g1_03_middle_step.png" width="440"><br>
+      <sub>g1 중간 DFS 진행 단계</sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/result_g1_04_final.png" width="440"><br>
+      <sub>g1 DFS 완료</sub>
+    </td>
+  </tr>
+</table>
+
+### g2 실행 결과
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/result_g2_01_initial.png" width="440"><br>
+      <sub>g2 초기 그래프</sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/result_g2_02_start_candidate.png" width="440"><br>
+      <sub>g2 시작 노드와 후보 노드 표시</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/result_g2_03_middle_step.png" width="440"><br>
+      <sub>g2 중간 DFS 진행 단계</sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/result_g2_04_final.png" width="440"><br>
+      <sub>g2 DFS 완료</sub>
+    </td>
+  </tr>
+</table>
+
+## 12. 검증 결과
+
+검증 명령과 결과는 다음과 같다.
+
+| 검증 항목 | 결과 |
+| --- | --- |
+| `python -m py_compile src/dfs_animal_generator.py` | 통과 |
+| `python src/dfs_animal_generator.py input/g1.txt output/g1.asu` | 통과 |
+| `python src/dfs_animal_generator.py input/g2.txt output/g2.asu` | 통과 |
+| `git diff --check` | 통과 |
+| g1 방문 순서 확인 | `A -> B -> C -> D -> E -> F -> G` |
+| g2 방문 순서 확인 | `A -> B -> C -> D -> G -> F -> E` |
+| Animal에서 g1/g2 실행 화면 확인 | 확인 완료 |
+| 실행 결과 스크린샷 8장 확보 | 확인 완료 |
+
+## 13. 최종 제출물 정리
+
+LMS 제출용 문서는 hwp 또는 word 형식 파일 하나로 정리해야 한다. zip 파일은 사용하지 않는다.
+
+최종 문서에는 다음 항목을 포함한다.
+
+- script 생성 프로그램: `src/dfs_animal_generator.py`
+- animal script:
+  - `output/g1.asu`
+  - `output/g2.asu`
+- animal 실행 결과 캡처:
+  - `screenshots/result_g1_*.png`
+  - `screenshots/result_g2_*.png`
+
+파일명은 과제 안내에 맞게 `ani2_이름_학번.hwp` 또는 `ani2_이름_학번.docx` 형식으로 제출한다.
+
+## 14. 결론
+
+본 구현은 입력 그래프 기반 DFS 수행을 완료했다. Python 생성 프로그램을 통해 AnimalScript 파일을 자동 생성하고, `g1`, `g2` 각각에 대한 Animal 실행 결과를 확보했다.
+
+애니메이션은 노드 상태별 색상과 굵은 DFS 트리 간선을 사용해 DFS 과정을 시각화한다. 과제 요구사항의 핵심인 애니메이션 작동, 보기 좋은 그래프 구성, 스크립트 생성 프로그램 사용을 모두 만족하도록 구성했다.
