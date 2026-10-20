@@ -1,3 +1,50 @@
+# DFS AnimalScript Generator
+
+입력 그래프의 깊이 우선 탐색 과정을 AnimalScript 애니메이션으로 생성하는 Python 프로그램입니다. 방문 순서, DFS 스택, 다음 후보와 트리 간선을 단계별로 표시합니다.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![AnimalScript](https://img.shields.io/badge/AnimalScript-444444?style=flat-square)
+![DFS](https://img.shields.io/badge/Algorithm-DFS-397A4A?style=flat-square)
+
+[빠른 실행](#실행) · [생성기](src/dfs_animal_generator.py) · [출력 파일](output) · [제출용 문서](ani2_submission.md) · [과제 보고서](#과제-보고서)
+
+| 초기 그래프 | DFS 완료 |
+| --- | --- |
+| ![g1 초기 화면](screenshots/result_g1_01_initial.png) | ![g1 탐색 완료 화면](screenshots/result_g1_04_final.png) |
+
+## 실행
+
+Python 표준 라이브러리만 사용합니다. 저장소 루트에서 실행합니다.
+
+```bash
+python src/dfs_animal_generator.py input/g1.txt output/g1.asu
+python src/dfs_animal_generator.py input/g2.txt output/g2.asu
+```
+
+Animal에서 **File → Open**으로 생성된 `.asu` 파일을 열고 단계를 재생합니다.
+
+## 탐색 결과
+
+시작점은 `A`이며, 무방향 그래프의 인접 노드를 알파벳순으로 방문합니다.
+
+| 입력 | 방문 순서 | DFS 트리 간선 |
+| --- | --- | --- |
+| [g1](input/g1.txt) | `A → B → C → D → E → F → G` | `AB, BC, CD, BE, EF, FG` |
+| [g2](input/g2.txt) | `A → B → C → D → G → F → E` | `AB, BC, CD, DG, GF, FE` |
+
+노드 상태는 초기·현재 방문·방문 후보·방문 완료로 구분합니다. 각 입력의 실행 화면과 입력 검증·생성 방식은 보고서에서 볼 수 있습니다.
+
+## 자료
+
+- [g1 AnimalScript 원문](appendices/g1_animalscript.md)
+- [g2 AnimalScript 원문](appendices/g2_animalscript.md)
+- [입력 데이터](input)와 [생성된 애니메이션](output)
+
+## 과제 보고서
+
+<details>
+<summary>기존 과제 보고서 펼치기</summary>
+
 # DFS AnimalScript Generator Assignment
 
 ## 목차
@@ -326,3 +373,5 @@ AnimalScript 원문은 별도 Markdown 파일에 정리했다.
     </td>
   </tr>
 </table>
+
+</details>
